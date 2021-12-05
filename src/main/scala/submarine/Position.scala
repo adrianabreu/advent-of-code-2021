@@ -4,7 +4,7 @@ import scala.io.Source
 object Position {
 
   def main(args: Array[String]): Unit = {
-    val filename = "input2.txt"
+    val filename            = "input2.txt"
     val lines: List[String] = Source.fromResource(filename).getLines.toList
 
     val position = calculate(lines)

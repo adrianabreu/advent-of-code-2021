@@ -5,7 +5,7 @@ import scala.collection.MapView
 object BinaryDiagnostic {
 
   def main(args: Array[String]): Unit = {
-    val filename = "input3.txt"
+    val filename            = "input3.txt"
     val lines: List[String] = Source.fromResource(filename).getLines.toList
 
     println(calculateConsumptionPower(lines))
@@ -37,8 +37,8 @@ object BinaryDiagnostic {
     )
 
   def calculateConsumptionPower(xs: List[String]): Int = {
-    val m = extractOcurrencesForAllNumbers(xs)
-    val gamma = calculateRate(m, (v) => v.maxBy(_._2)._1)
+    val m       = extractOcurrencesForAllNumbers(xs)
+    val gamma   = calculateRate(m, (v) => v.maxBy(_._2)._1)
     val epsilon = calculateRate(m, (v) => v.minBy(_._2)._1)
     gamma * epsilon
   }

@@ -4,7 +4,7 @@ import scala.io.Source
 object Bingo {
 
   def main(args: Array[String]): Unit = {
-    val filename = "input4.txt"
+    val filename            = "input4.txt"
     val lines: List[String] = Source.fromResource(filename).getLines.toList
 
     val winnerPoints = play(lines)
@@ -35,9 +35,7 @@ object Bingo {
     ): (Board, Int) = {
       val winner = boards.filter(p =>
         p.rows.exists(bm =>
-          bm.forall(_.checked) || p.rows.transpose.exists(bm =>
-            bm.forall(_.checked)
-          )
+          bm.forall(_.checked) || p.rows.transpose.exists(bm => bm.forall(_.checked))
         )
       )
       if (!winner.isEmpty) (winner.head, possibleWinner)
@@ -45,11 +43,7 @@ object Bingo {
         val n = numbers.head
         val updatedBoards = boards.map(b =>
           Board(
-            b.rows.map(r =>
-              r.map(bm =>
-                if (bm.number == n) BoardMark(bm.number, true) else bm
-              )
-            )
+            b.rows.map(r => r.map(bm => if (bm.number == n) BoardMark(bm.number, true) else bm))
           )
         )
         playUntilWinner(numbers.tail, updatedBoards, n)
@@ -80,9 +74,7 @@ object Bingo {
     ): (Board, Int) = {
       val winner = boards.filter(p =>
         p.rows.exists(bm =>
-          bm.forall(_.checked) || p.rows.transpose.exists(bm =>
-            bm.forall(_.checked)
-          )
+          bm.forall(_.checked) || p.rows.transpose.exists(bm => bm.forall(_.checked))
         )
       )
       if (!winner.isEmpty && boards.size == 1) (winner.head, possibleWinner)
@@ -90,19 +82,13 @@ object Bingo {
         // Would be good to just subtract from winners
         val nonWinningBoards = boards.filter(p =>
           !p.rows.exists(bm =>
-            bm.forall(_.checked) || p.rows.transpose.exists(bm =>
-              bm.forall(_.checked)
-            )
+            bm.forall(_.checked) || p.rows.transpose.exists(bm => bm.forall(_.checked))
           )
         )
         val n = numbers.head
         val updatedBoards = nonWinningBoards.map(b =>
           Board(
-            b.rows.map(r =>
-              r.map(bm =>
-                if (bm.number == n) BoardMark(bm.number, true) else bm
-              )
-            )
+            b.rows.map(r => r.map(bm => if (bm.number == n) BoardMark(bm.number, true) else bm))
           )
         )
         playUntilLastWin(numbers.tail, updatedBoards, n)
