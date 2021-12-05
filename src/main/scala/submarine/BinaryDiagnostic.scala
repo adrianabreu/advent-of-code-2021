@@ -43,50 +43,48 @@ object BinaryDiagnostic {
     gamma * epsilon
   }
 
-  def calculateOxigen(xs: List[String]): Int = {
-    def loop(ys: List[String], index: Int): Int = {
-      if (ys.size == 1) Integer.parseInt(ys.head, 2)
-      else {
-        val occ = extractOcurrencesForAllNumbers(ys)
-        loop(
-          ys.filter(c =>
-            c(index).toString == occ(index)
-              .reduce((a, b) => {
-                if (a._2 == b._2) if (a._1 == "1") a else b
-                else if (a._2 < b._2) b
-                else a
-              })
-              ._1
-          ),
-          index + 1
-        )
-      }
+  def calculateOxigen(xs: List[String]): Int =
+    calculateAir(
+      xs,
+      0,
+      (
+          m =>
+            m.reduce((a, b) => {
+              if (a._2 == b._2) if (a._1 == "1") a else b
+              else if (a._2 < b._2) b
+              else a
+            })
+      )
+    )
 
+  def calculateCo2(xs: List[String]): Int =
+    calculateAir(
+      xs,
+      0,
+      (
+          m =>
+            m.reduce((a, b) => {
+              if (a._2 == b._2) if (a._1 == "0") a else b
+              else if (a._2 < b._2) a
+              else b
+            })
+      )
+    )
+
+  private def calculateAir(
+      ys: List[String],
+      index: Int,
+      criteria: (MapView[String, Int] => (String, Int))
+  ): Int = {
+    if (ys.size == 1) Integer.parseInt(ys.head, 2)
+    else {
+      val occ = extractOcurrencesForAllNumbers(ys)
+      calculateAir(
+        ys.filter(c => c(index).toString == criteria(occ(index))._1),
+        index + 1,
+        criteria
+      )
     }
-    loop(xs, 0)
-  }
-
-  def calculateCo2(xs: List[String]): Int = {
-    def loop(ys: List[String], index: Int): Int = {
-      if (ys.size == 1) Integer.parseInt(ys.head, 2)
-      else {
-        val occ = extractOcurrencesForAllNumbers(ys)
-        loop(
-          ys.filter(c =>
-            c(index).toString == occ(index)
-              .reduce((a, b) => {
-                if (a._2 == b._2) if (a._1 == "0") a else b
-                else if (a._2 < b._2) a
-                else b
-              })
-              ._1
-          ),
-          index + 1
-        )
-      }
-
-    }
-    loop(xs, 0)
   }
   def calculateLifeSupportRating(xs: List[String]): Int =
     calculateOxigen(xs) * calculateCo2(xs)
