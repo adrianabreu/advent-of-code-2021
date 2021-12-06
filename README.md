@@ -7,3 +7,4 @@ These are my scala solutions to the advent of code of this year, trying to solve
 * [Day 3](/src/main/scala/submarine/BinaryDiagnostic.scala)
 * [Day 4](/src/main/scala/submarine/Bingo.scala)
 * [Day 5](/src/main/scala/submarine/Vents.scala)
+* [Day 6](/src/main/scala/submarine/Lanternfish.scala)
