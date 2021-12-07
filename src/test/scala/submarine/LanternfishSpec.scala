@@ -22,4 +22,3 @@ class LanternfishSpec extends AnyFlatSpec with Matchers {
   }
 
 }
-
