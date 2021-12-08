@@ -9,3 +9,4 @@ These are my scala solutions to the advent of code of this year, trying to solve
 * [Day 5](/src/main/scala/submarine/Vents.scala)
 * [Day 6](/src/main/scala/submarine/Lanternfish.scala)
 * [Day 7](/src/main/scala/submarine/Crabs.scala)
+* [Day 8](/src/main/scala/submarine/Segments.scala)
