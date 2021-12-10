@@ -11,3 +11,4 @@ These are my scala solutions to the advent of code of this year, trying to solve
 * [Day 7](/src/main/scala/submarine/Crabs.scala)
 * [Day 8](/src/main/scala/submarine/Segments.scala)
 * [Day 9](/src/main/scala/submarine/Lava.scala)
+* [Day 10](/src/main/scala/submarine/Syntax.scala)
