@@ -23,11 +23,11 @@ class SegmentsSpec extends AnyFlatSpec with Matchers {
 
     assertResult(26)(output)
   }
-  
+
   "The Segments spec" should "decode digits" in {
     val output = Segments.decodeDigits(input)
 
     assertResult(61229)(output)
   }
-  
+
 }

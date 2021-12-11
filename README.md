@@ -12,3 +12,7 @@ These are my scala solutions to the advent of code of this year, trying to solve
 * [Day 8](/src/main/scala/submarine/Segments.scala)
 * [Day 9](/src/main/scala/submarine/Lava.scala)
 * [Day 10](/src/main/scala/submarine/Syntax.scala)
+
+## [Day 11](/src/main/scala/submarine/Octopus.scala)
+
+Today I learnt that from a HashMap, the keys are by default a hashset, so when I was trying to increase all the neighbours I was preventing the same cell for being updated more than once.
