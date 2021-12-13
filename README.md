@@ -19,3 +19,6 @@ Today I learnt that from a HashMap, the keys are by default a hashset, so when I
 
 ## [Day 12](/src/main/scala/submarine/Passage.scala)
 
+## [Day 13](/src/main/scala/submarine/Origami.scala)
+
+Today was quite straight-forward, the only thing I regret was not putting too much attention to the instructions but I was quite happy with the result

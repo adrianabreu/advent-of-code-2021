@@ -15,7 +15,7 @@ object Passage {
   }
 
   def paths(xs: List[String]): Int = {
-    
+
     def loop(point: String, xs: Map[String, Seq[String]], visited: Set[String]): Int = {
       if (point == "end") {
         1
@@ -30,28 +30,42 @@ object Passage {
   }
 
   def pathsWithTwice(xs: List[String]): Int = {
-    def loop(point: String, xs: Map[String, Seq[String]], visited: List[String], twice: Set[String]): Int = {
+    def loop(
+        point: String,
+        xs: Map[String, Seq[String]],
+        visited: List[String],
+        twice: Set[String]
+    ): Int = {
       if (point == "end") {
         1
-      } else if (point.toLowerCase == point && !visited.find(v => v == point).isEmpty && twice.size > 0) {
+      } else if (
+        point.toLowerCase == point && !visited.find(v => v == point).isEmpty && twice.size > 0
+      ) {
         0
       } else {
-        
-        xs(point).map(x => {
-            val vst = if (point.toLowerCase() == point && !visited.find(v => v == point).isEmpty)  Set(point) else Set[String]()
-            loop(x, xs, visited ++ List(point), if(twice.size == 0) vst else twice)
-        }).sum
+
+        xs(point)
+          .map(x => {
+            val vst =
+              if (point.toLowerCase() == point && !visited.find(v => v == point).isEmpty) Set(point)
+              else Set[String]()
+            loop(x, xs, visited ++ List(point), if (twice.size == 0) vst else twice)
+          })
+          .sum
       }
     }
 
-    loop("start", inputToMap(xs), List(), Set())    
+    loop("start", inputToMap(xs), List(), Set())
   }
 
   def inputToMap(xs: List[String]): Map[String, List[String]] =
     xs
-      .flatMap(x => List((x.split("-")(0), x.split("-")(1)), (x.split("-").reverse(0), x.split("-").reverse(1))))
+      .flatMap(x =>
+        List((x.split("-")(0), x.split("-")(1)), (x.split("-").reverse(0), x.split("-").reverse(1)))
+      )
       .filter(p => p._2 != "start")
       .filter(p => p._1 != "end")
-      .groupBy(p => p._1).mapValues(f => f.map(_._2)).toMap
+      .groupBy(p => p._1)
+      .mapValues(f => f.map(_._2))
+      .toMap
 }
-

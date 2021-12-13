@@ -12,7 +12,7 @@ class PassageSpec extends AnyFlatSpec with Matchers {
     "A-b",
     "b-d",
     "A-end",
-    "b-end",
+    "b-end"
   )
 
   "The Passage spec" should "calculate the different paths" in {
@@ -21,7 +21,7 @@ class PassageSpec extends AnyFlatSpec with Matchers {
     assertResult(10)(output)
   }
 
-    "The Passage spec" should "calculate the different paths when visit a small cave is allowed" in {
+  "The Passage spec" should "calculate the different paths when visit a small cave is allowed" in {
     val output = Passage.pathsWithTwice(input)
 
     assertResult(36)(output)
