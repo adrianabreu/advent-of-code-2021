@@ -35,8 +35,4 @@ class OrigamiSpec extends AnyFlatSpec with Matchers {
     assertResult(17)(output)
   }
 
-  "The Origami spec" should "print the number" in {
-    val output = Origami.fold2(input)
-  }
-
 }
